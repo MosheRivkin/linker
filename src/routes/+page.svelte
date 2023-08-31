@@ -15,11 +15,11 @@
 			},
 			body: JSON.stringify({ url: url })
 		});
-		resoldUrl = res.url;
+		resUrl = res.url;
 	};
 	let url: string = '';
 	let slots: string = '';
-	let resoldUrl: string = '';
+	let resUrl: string = '';
 	let copied: boolean = false;
 </script>
 
@@ -80,11 +80,11 @@
 	</form>
 </div>
 
-<dialog id="modal" class="modal {resoldUrl && 'modal-open'} transition-all duration-500">
+<dialog id="modal" class="modal {resUrl && 'modal-open'} transition-all duration-500">
 	<form method="dialog" class="modal-box flex flex-col p-10 items-center">
 		<h3 class="font-bold text-2xl my-10">Your URL created successfully 🥳</h3>
-		<a class="text-lg link-hover cursor-pointer mt-10 mb-4" href={resoldUrl}
-			>{resoldUrl.replace(/^https:\/\/|\/$/g, '')}</a
+		<a class="text-lg link-hover cursor-pointer mt-10 mb-4" href={resUrl}
+			>{resUrl.replace(/^https:\/\/|\/$/g, '')}</a
 		>
 		<div id="placeholder" class="h-1 my-0">
 			{#if copied}
@@ -103,7 +103,7 @@
 		<button
 			class="btn btn-secondary btn-wide my-10"
 			on:click={() => {
-				navigator.clipboard.writeText(resoldUrl);
+				navigator.clipboard.writeText(resUrl);
 				copied = true;
 				setTimeout(() => {
 					copied = false;
@@ -116,6 +116,6 @@
 	<form
 		method="dialog"
 		class="modal-backdrop bg-black opacity-90"
-		on:click={() => (resoldUrl = '')}
+		on:click={() => (resUrl = '')}
 	/>
 </dialog>
